@@ -4,6 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
-  <body></body>
+  <body>
+    <h1 id="demo"></h1>
+    <script>
+      //   function handlePosition(position) {
+      //     console.log(position.coords.latitude);
+      //     console.log(position.coords.longitude);
+      //   }
+      //   navigator.geolocation.getCurrentPosition(handlePosition);
+      // JS Challenge 1
+      function handlePosition(position) {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+      }
+      navigator.geolocation.getCurrentPosition(handlePosition);
+      // JS Challenge 2
+      function showTemperature(response) {
+        let temperature = Math.round(response.data.main.temp);
+        // console.log(temperature);
+        let h1 = document.querySelector("#demo");
+        h1.innerHTML = `It is ${temperature} degrees in ${city}`;
+        console.log(response);
+      }
+
+      let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+      let units = "metric";
+      let city = "Iran";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+      axios.get(apiUrl).then(showTemperature);
+      // JS Challenge 3
+    </script>
+  </body>
 </html>
